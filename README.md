@@ -15,10 +15,10 @@ We will be using the following datasets:
 To maintain consistency and readability, the following naming conventions and data types will be used:
 * Column Naming Convention: Snake case (e.g., release_date)
 * Data Types: 
-** numeric: For numerical values without decimals (e.g., budget, gross)
-** float: For numerical values with decimals (e.g., rating)
-** str: For categorical data (e.g., genre, director)
-** datetime: For date-related columns (e.g., release_date)
+    * numeric: For numerical values without decimals (e.g., budget, gross)
+    * float: For numerical values with decimals (e.g., rating)
+    * str: For categorical data (e.g., genre, director)
+    * datetime: For date-related columns (e.g., release_date)
 
 ## Data Preparation (Richard and Tunji)
 * Load and preprocess the datasets to ensure consistency in naming conventions and data types
