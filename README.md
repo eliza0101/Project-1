@@ -1,63 +1,51 @@
-# Project-1
+# Movie Success Analysis and Prediction
 
-# Data Analytics Project: Identifying World's Healthiest Countries
+## Overview
+This project analyzes and predicts movie success using various datasets from Kaggle. The primary focus is on identifying trends in movie gross earnings and return on investment (ROI) to provide recommendations for future investments in the film industry.
 
-# 1. Data Import and Preparation
-IMPORT WHO_World_Health_Statistics_2020_dataset
-CLEAN dataset (handle missing values, remove duplicates)
+This project aims to provide a comprehensive analysis of movie success factors using historical data. By understanding trends in gross earnings and ROI, we can make informed predictions and recommendations for future investments in the film industry.
 
-# 2. Select Relevant Health Indicators
-DEFINE health_indicators AS [
-    "Life expectancy at birth",
-    "Healthy life expectancy (HALE) at birth",
-    "Mortality rate, under-5 (per 1,000 live births)",
-    "Prevalence of obesity among adults",
-    "Prevalence of smoking",
-    "Universal health coverage (UHC) service coverage index"
-]
+## Datasets (Tunji)
+We will be using the following datasets:
+1. Movie Industry Dataset: Contains 6820 movies from 1986 to 2016 with attributes like budget and gross earnings. https://www.kaggle.com/datasets/danielgrijalvas/movies/data
+2. Top 1000 Highest Grossing Movies: Lists the top 1000 highest-grossing movies. https://www.kaggle.com/datasets/sanjeetsinghnaik/top-1000-highest-grossing-movies
+3. IMDb Movies Dataset Based on Genre: Provides a comprehensive collection of movies sorted by genre. https://www.kaggle.com/datasets/rajugc/imdb-movies-dataset-based-on-genre
 
-# 3. Data Exploration
-FOR EACH indicator IN health_indicators:
-    CALCULATE summary statistics
-    VISUALIZE distribution across countries
+## Naming Conventions and Data Types (Eliza)
+To maintain consistency and readability, the following naming conventions and data types will be used:
+* Column Naming Convention: Snake case (e.g., release_date)
+* Data Types: 
+    * numeric: For numerical values without decimals (e.g., budget, gross)
+    * float: For numerical values with decimals (e.g., rating)
+    * str: For categorical data (e.g., genre, director)
+    * datetime: For date-related columns (e.g., release_date)
 
-# 4. Create Composite Health Index
-FUNCTION create_health_index(country_data):
-    NORMALIZE each indicator in health_indicators
-    CALCULATE weighted average of normalized indicators
-    RETURN composite health index
+## Data Preparation (Richard and Tunji)
+* Load and preprocess the datasets to ensure consistency in naming conventions and data types
+* Remove duplicates and invalid information
+* Handle missing values
+* Merge all three datasets into one dataframe
 
-FOR EACH country IN dataset:
-    country_health_index = create_health_index(country_data)
-    ADD country_health_index to country_data
+## Dependencies
+* Python
+* NumPy
+* Matplotlib (for visualization)
 
-# 5. Rank Countries
-SORT countries by health_index in DESCENDING order
-SELECT top_20_healthiest_countries
 
-# 6. Analyze Top Performers
-FOR EACH country IN top_20_healthiest_countries:
-    ANALYZE performance across individual health indicators
-    IDENTIFY common characteristics
+## Analysis Goals
 
-# 7. Visualize Results
-CREATE world map highlighting healthiest countries
-CREATE bar charts for top 20 countries' health index scores
-CREATE scatter plots comparing key health indicators
+### Top 10 Movies Every 5 Years (Catherine)
+**Objective:** Identify the top 10 movies every 5 years starting from the 1990s based on gross earnings.
+**Purpose:** Understand what genres and types of movies were most popular among viewers over different periods.
 
-# 8. Statistical Analysis
-PERFORM correlation analysis between health indicators
-CONDUCT regression analysis to identify most influential factors
+### Genre Analysis (Catherine)
+**Objective:** From the top 10 movies identified, analyze the genres based on gross earnings.
+**Purpose:** Determine which genres have consistently performed well and are preferred by viewers.
 
-# 9. Report Generation
-SUMMARIZE key findings
-HIGHLIGHT top 5 healthiest countries and their characteristics
-DISCUSS trends and patterns observed
-PROVIDE insights on factors contributing to better health outcomes
+### Top 10 Movies by ROI (Eliza)
+**Objective:** Identify the top 10 movies in terms of ROI.
+**Factors Considered:** Director, Actor, License, Runtime.
+**Purpose:** Determine the combination of factors that contribute to the highest ROI.
 
-# 10. (Optional) Predictive Modeling
-IF time_permits:
-    SPLIT data into training and testing sets
-    TRAIN machine learning model to predict health index
-    EVALUATE model performance
-    IDENTIFY most important features for predicting health outcomes
+## Prediction and Recommendation (Tunji)
+Based on the analysis of the top 10 movies every five years and the top 10 movies by ROI, we will make predictions and provide recommendations for future investments in the film industry. This will help clients make informed decisions on where to invest their resources for maximum returns.
