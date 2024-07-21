@@ -95,3 +95,144 @@ final_top_10_movies.to_csv('/Users/cw/Desktop/top_10_movies_every_5_years.csv', 
 
 # Display the final top 10 movies DataFrame
 print(final_top_10_movies)
+
+
+# Analyze the genres based on gross earnings
+# Split genres and explode into separate rows
+final_top_10_movies['genre'] = final_top_10_movies['genre'].str.split(', ')
+exploded_genres = final_top_10_movies.explode('genre')
+
+# Group by genre and sum the gross earnings
+genre_analysis = exploded_genres.groupby('genre')['gross'].sum().reset_index()
+
+# Sort the genres by gross earnings
+genre_analysis = genre_analysis.sort_values(by='gross', ascending=False)
+
+# Save the genre analysis to a CSV file
+genre_analysis.to_csv('/Users/cw/Desktop/genre_analysis_by_gross.csv', index=False)
+
+# Display the genre analysis DataFrame
+print(genre_analysis)
+
+import matplotlib.pyplot as plt
+
+
+# Calculate total gross earnings for each 5-year interval
+gross_earnings_interval = final_top_10_movies.groupby('Interval')['gross'].sum().reset_index()
+
+# Plotting the trend of gross earnings over time
+plt.figure(figsize=(12, 6))
+plt.plot(gross_earnings_interval['Interval'], gross_earnings_interval['gross'], marker='o')
+plt.xlabel('Interval')
+plt.ylabel('Total Gross Earnings')
+plt.title('Total Gross Earnings for Top 10 Movies Every 5 Years')
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.show()
+import seaborn as sns
+
+# Correlation matrix
+correlation_matrix = final_top_10_movies[['gross', 'rating', 'runtime']].corr()
+print(correlation_matrix)
+
+# Heatmap of the correlation matrix
+plt.figure(figsize=(8, 6))
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', linewidths=0.5)
+plt.title('Correlation Matrix')
+plt.show()
+
+
+# Box plot for gross earnings by 5-year intervals
+plt.figure(figsize=(12, 6))
+sns.boxplot(x='Interval', y='gross', data=final_top_10_movies)
+plt.xticks(rotation=45)
+plt.xlabel('Interval')
+plt.ylabel('Gross Earnings')
+plt.title('Box Plot of Gross Earnings by 5-Year Intervals')
+plt.show()
+
+# Box plot for ratings by 5-year intervals
+plt.figure(figsize=(12, 6))
+sns.boxplot(x='Interval', y='rating', data=final_top_10_movies)
+plt.xticks(rotation=45)
+plt.xlabel('Interval')
+plt.ylabel('Rating')
+plt.title('Box Plot of Ratings by 5-Year Intervals')
+plt.show()
+
+# Box plot for runtimes by 5-year intervals
+plt.figure(figsize=(12, 6))
+sns.boxplot(x='Interval', y='runtime', data=final_top_10_movies)
+plt.xticks(rotation=45)
+plt.xlabel('Interval')
+plt.ylabel('Runtime (minutes)')
+plt.title('Box Plot of Runtimes by 5-Year Intervals')
+plt.show()
+
+# Histogram for gross earnings
+plt.figure(figsize=(12, 6))
+plt.hist(final_top_10_movies['gross'], bins=30, color='blue', alpha=0.7)
+plt.xlabel('Gross Earnings')
+plt.ylabel('Frequency')
+plt.title('Histogram of Gross Earnings')
+plt.show()
+
+# Density plot for ratings
+plt.figure(figsize=(12, 6))
+sns.kdeplot(final_top_10_movies['rating'], shade=True, color='orange')
+plt.xlabel('Rating')
+plt.ylabel('Density')
+plt.title('Density Plot of Ratings')
+plt.show()
+
+# Density plot for runtimes
+plt.figure(figsize=(12, 6))
+sns.kdeplot(final_top_10_movies['runtime'], shade=True, color='green')
+plt.xlabel('Runtime (minutes)')
+plt.ylabel('Density')
+plt.title('Density Plot of Runtimes')
+plt.show()
+
+# Calculate average ratings and runtimes for each 5-year interval
+average_stats_interval = final_top_10_movies.groupby('Interval').agg({
+    'rating': 'mean',
+    'runtime': 'mean'
+}).reset_index()
+
+# Plotting the trend of average ratings over time
+plt.figure(figsize=(12, 6))
+plt.plot(average_stats_interval['Interval'], average_stats_interval['rating'], marker='o', color='orange')
+plt.xlabel('Interval')
+plt.ylabel('Average Rating')
+plt.title('Average Rating for Top 10 Movies Every 5 Years')
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.show()
+
+# Plotting the trend of average runtimes over time
+plt.figure(figsize=(12, 6))
+plt.plot(average_stats_interval['Interval'], average_stats_interval['runtime'], marker='o', color='green')
+plt.xlabel('Interval')
+plt.ylabel('Average Runtime (minutes)')
+plt.title('Average Runtime for Top 10 Movies Every 5 Years')
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.show()
+
+
+# Frequency of directors and stars in the top 10 movies
+top_directors = final_top_10_movies['director'].value_counts().head(10).reset_index()
+top_directors.columns = ['director', 'frequency']
+print(top_directors)
+
+top_stars = final_top_10_movies['star'].value_counts().head(10).reset_index()
+top_stars.columns = ['star', 'frequency']
+print(top_stars)
+
+# Average gross earnings by director
+average_gross_by_director = final_top_10_movies.groupby('director')['gross'].mean().reset_index().sort_values(by='gross', ascending=False)
+print(average_gross_by_director.head(10))
+
+# Average gross earnings by star
+average_gross_by_star = final_top_10_movies.groupby('star')['gross'].mean().reset_index().sort_values(by='gross', ascending=False)
+print(average_gross_by_star.head(10))
