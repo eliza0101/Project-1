@@ -129,3 +129,14 @@ plt.title('Total Gross Earnings for Top 10 Movies Every 5 Years')
 plt.xticks(rotation=45)
 plt.grid(True)
 plt.show()
+import seaborn as sns
+
+# Correlation matrix
+correlation_matrix = final_top_10_movies[['gross', 'rating', 'runtime']].corr()
+print(correlation_matrix)
+
+# Heatmap of the correlation matrix
+plt.figure(figsize=(8, 6))
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', linewidths=0.5)
+plt.title('Correlation Matrix')
+plt.show()
