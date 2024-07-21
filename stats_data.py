@@ -168,3 +168,53 @@ plt.xlabel('Interval')
 plt.ylabel('Runtime (minutes)')
 plt.title('Box Plot of Runtimes by 5-Year Intervals')
 plt.show()
+
+# Histogram for gross earnings
+plt.figure(figsize=(12, 6))
+plt.hist(final_top_10_movies['gross'], bins=30, color='blue', alpha=0.7)
+plt.xlabel('Gross Earnings')
+plt.ylabel('Frequency')
+plt.title('Histogram of Gross Earnings')
+plt.show()
+
+# Density plot for ratings
+plt.figure(figsize=(12, 6))
+sns.kdeplot(final_top_10_movies['rating'], shade=True, color='orange')
+plt.xlabel('Rating')
+plt.ylabel('Density')
+plt.title('Density Plot of Ratings')
+plt.show()
+
+# Density plot for runtimes
+plt.figure(figsize=(12, 6))
+sns.kdeplot(final_top_10_movies['runtime'], shade=True, color='green')
+plt.xlabel('Runtime (minutes)')
+plt.ylabel('Density')
+plt.title('Density Plot of Runtimes')
+plt.show()
+
+# Calculate average ratings and runtimes for each 5-year interval
+average_stats_interval = final_top_10_movies.groupby('Interval').agg({
+    'rating': 'mean',
+    'runtime': 'mean'
+}).reset_index()
+
+# Plotting the trend of average ratings over time
+plt.figure(figsize=(12, 6))
+plt.plot(average_stats_interval['Interval'], average_stats_interval['rating'], marker='o', color='orange')
+plt.xlabel('Interval')
+plt.ylabel('Average Rating')
+plt.title('Average Rating for Top 10 Movies Every 5 Years')
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.show()
+
+# Plotting the trend of average runtimes over time
+plt.figure(figsize=(12, 6))
+plt.plot(average_stats_interval['Interval'], average_stats_interval['runtime'], marker='o', color='green')
+plt.xlabel('Interval')
+plt.ylabel('Average Runtime (minutes)')
+plt.title('Average Runtime for Top 10 Movies Every 5 Years')
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.show()
