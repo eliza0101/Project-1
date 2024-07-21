@@ -218,3 +218,21 @@ plt.title('Average Runtime for Top 10 Movies Every 5 Years')
 plt.xticks(rotation=45)
 plt.grid(True)
 plt.show()
+
+
+# Frequency of directors and stars in the top 10 movies
+top_directors = final_top_10_movies['director'].value_counts().head(10).reset_index()
+top_directors.columns = ['director', 'frequency']
+print(top_directors)
+
+top_stars = final_top_10_movies['star'].value_counts().head(10).reset_index()
+top_stars.columns = ['star', 'frequency']
+print(top_stars)
+
+# Average gross earnings by director
+average_gross_by_director = final_top_10_movies.groupby('director')['gross'].mean().reset_index().sort_values(by='gross', ascending=False)
+print(average_gross_by_director.head(10))
+
+# Average gross earnings by star
+average_gross_by_star = final_top_10_movies.groupby('star')['gross'].mean().reset_index().sort_values(by='gross', ascending=False)
+print(average_gross_by_star.head(10))
