@@ -113,3 +113,19 @@ genre_analysis.to_csv('/Users/cw/Desktop/genre_analysis_by_gross.csv', index=Fal
 
 # Display the genre analysis DataFrame
 print(genre_analysis)
+
+import matplotlib.pyplot as plt
+
+
+# Calculate total gross earnings for each 5-year interval
+gross_earnings_interval = final_top_10_movies.groupby('Interval')['gross'].sum().reset_index()
+
+# Plotting the trend of gross earnings over time
+plt.figure(figsize=(12, 6))
+plt.plot(gross_earnings_interval['Interval'], gross_earnings_interval['gross'], marker='o')
+plt.xlabel('Interval')
+plt.ylabel('Total Gross Earnings')
+plt.title('Total Gross Earnings for Top 10 Movies Every 5 Years')
+plt.xticks(rotation=45)
+plt.grid(True)
+plt.show()
