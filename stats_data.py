@@ -140,3 +140,31 @@ plt.figure(figsize=(8, 6))
 sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', linewidths=0.5)
 plt.title('Correlation Matrix')
 plt.show()
+
+
+# Box plot for gross earnings by 5-year intervals
+plt.figure(figsize=(12, 6))
+sns.boxplot(x='Interval', y='gross', data=final_top_10_movies)
+plt.xticks(rotation=45)
+plt.xlabel('Interval')
+plt.ylabel('Gross Earnings')
+plt.title('Box Plot of Gross Earnings by 5-Year Intervals')
+plt.show()
+
+# Box plot for ratings by 5-year intervals
+plt.figure(figsize=(12, 6))
+sns.boxplot(x='Interval', y='rating', data=final_top_10_movies)
+plt.xticks(rotation=45)
+plt.xlabel('Interval')
+plt.ylabel('Rating')
+plt.title('Box Plot of Ratings by 5-Year Intervals')
+plt.show()
+
+# Box plot for runtimes by 5-year intervals
+plt.figure(figsize=(12, 6))
+sns.boxplot(x='Interval', y='runtime', data=final_top_10_movies)
+plt.xticks(rotation=45)
+plt.xlabel('Interval')
+plt.ylabel('Runtime (minutes)')
+plt.title('Box Plot of Runtimes by 5-Year Intervals')
+plt.show()
