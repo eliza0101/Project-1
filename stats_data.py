@@ -95,3 +95,21 @@ final_top_10_movies.to_csv('/Users/cw/Desktop/top_10_movies_every_5_years.csv', 
 
 # Display the final top 10 movies DataFrame
 print(final_top_10_movies)
+
+
+# Analyze the genres based on gross earnings
+# Split genres and explode into separate rows
+final_top_10_movies['genre'] = final_top_10_movies['genre'].str.split(', ')
+exploded_genres = final_top_10_movies.explode('genre')
+
+# Group by genre and sum the gross earnings
+genre_analysis = exploded_genres.groupby('genre')['gross'].sum().reset_index()
+
+# Sort the genres by gross earnings
+genre_analysis = genre_analysis.sort_values(by='gross', ascending=False)
+
+# Save the genre analysis to a CSV file
+genre_analysis.to_csv('/Users/cw/Desktop/genre_analysis_by_gross.csv', index=False)
+
+# Display the genre analysis DataFrame
+print(genre_analysis)
