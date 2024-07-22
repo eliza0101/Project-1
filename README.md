@@ -6,7 +6,8 @@ This project analyzes and predicts movie success using various datasets from Kag
 
 This project aims to provide a comprehensive analysis of movie success factors using historical data. By understanding trends in gross earnings and ROI, we can make informed predictions and recommendations for future investments in the film industry.
 
-## Datasets (Tunji) - File location: Movie_Datasets
+## Datasets (Tunji)
+#### File location: Movie_Datasets
 We will be using the following datasets:
 1. Movie Industry Dataset: Contains 6820 movies from 1986 to 2016 with attributes like budget and gross earnings. 
 https://www.kaggle.com/datasets/danielgrijalvas/movies/data
@@ -36,6 +37,8 @@ To maintain consistency and readability, the following naming conventions and da
 * Python
 * NumPy
 * Matplotlib (for visualization)
+* locale
+* Prophet
 
 
 ## Analysis Goals
@@ -56,7 +59,7 @@ To maintain consistency and readability, the following naming conventions and da
 #### File location: main_movies_ey.ipynb, clean_files_ey.ipynb
 **Objective:** Identify the top 10 movies in terms of ROI.
 
-**Factors Considered:** director, star, genre, license, release_date.
+**Factors Considered:** title, ROI, gross, director, star, genre, license, year.
 
 **Purpose:** Determine the combination of factors that contribute to the highest ROI.
 
