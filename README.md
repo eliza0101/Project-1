@@ -1,5 +1,7 @@
 # Movie Success Analysis and Prediction
 #### Link to repo https://github.com/eliza0101/Project-1.git 
+#### Link to presentation: https://www.canva.com/design/DAGKwzwMCek/aHYuXAeiH6sfzQCsi9eeZw/edit?utm_content=DAGKwzwMCek&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton 
+
 
 ## Overview
 This project analyzes and predicts movie success using various datasets from Kaggle. The primary focus is on identifying trends in movie gross earnings and return on investment (ROI) to provide recommendations for future investments in the film industry.
