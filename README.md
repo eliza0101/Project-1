@@ -11,16 +11,16 @@ We will be using the following datasets:
 2. Top 1000 Highest Grossing Movies: Lists the top 1000 highest-grossing movies. https://www.kaggle.com/datasets/sanjeetsinghnaik/top-1000-highest-grossing-movies
 3. IMDb Movies Dataset Based on Genre: Provides a comprehensive collection of movies sorted by genre. https://www.kaggle.com/datasets/rajugc/imdb-movies-dataset-based-on-genre
 
-## Naming Conventions and Data Types (Eliza)
+## Naming Conventions and Data Types (Team)
 To maintain consistency and readability, the following naming conventions and data types will be used:
 * Column Naming Convention: Snake case (e.g., release_date)
 * Data Types: 
-    * numeric: For numerical values without decimals (e.g., budget, gross)
+    * int: For numerical values without decimals (e.g., budget, gross)
     * float: For numerical values with decimals (e.g., rating)
     * str: For categorical data (e.g., genre, director)
     * datetime: For date-related columns (e.g., release_date)
 
-## Data Preparation (Richard and Tunji)
+## Data Preparation (Tunji)
 * Load and preprocess the datasets to ensure consistency in naming conventions and data types
 * Remove duplicates and invalid information
 * Handle missing values
@@ -44,8 +44,8 @@ To maintain consistency and readability, the following naming conventions and da
 
 ### Top 10 Movies by ROI (Eliza)
 **Objective:** Identify the top 10 movies in terms of ROI.
-**Factors Considered:** Director, Actor, License, Runtime.
+**Factors Considered:** director, star, genre, license, release_date.
 **Purpose:** Determine the combination of factors that contribute to the highest ROI.
 
-## Prediction and Recommendation (Tunji)
+## Prediction and Recommendation (Eliza)
 Based on the analysis of the top 10 movies every five years and the top 10 movies by ROI, we will make predictions and provide recommendations for future investments in the film industry. This will help clients make informed decisions on where to invest their resources for maximum returns.
