@@ -68,7 +68,9 @@ combined_movie_df.columns
 combined_movie_df['gross'] = combined_movie_df['gross'].map(lambda x: '${:,.2f}'.format(x))
 
 # %%
-combined_movie_df.drop('gross', axis=1, inplace=True)
+combined_movie_df.drop('gross.1', axis=1, inplace=True)
+
+
 
 # %%
 #save combined dataset and convert to csv
