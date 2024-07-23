@@ -29,7 +29,7 @@ To maintain consistency and readability, the following naming conventions and da
     * datetime: For date-related columns (e.g., release_date)
 
 ## Data Preparation (Tunji) 
-#### File location: tunji finished clean.py
+#### File location: finished_code_for_project.py
 * Load and preprocess the datasets to ensure consistency in naming conventions and data types
 * Remove duplicates and invalid information
 * Handle missing values
