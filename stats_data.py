@@ -1,4 +1,6 @@
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # List of files to be combined
 uploaded_files = [
@@ -76,6 +78,7 @@ def get_top_10_movies(df, start_year, end_year):
     interval_df = df[(df['year'] >= start_year) & (df['year'] < end_year)]
     top_10 = interval_df.sort_values(by='gross', ascending=False).head(10)
     top_10['Interval'] = f"{start_year}-{end_year - 1}"
+    top_10['gross'] = top_10['gross'] / 1_000_000  # Convert gross to millions
     return top_10
 
 # List to store the top 10 movies for each 5-year interval
@@ -94,8 +97,9 @@ final_top_10_movies = pd.concat(top_10_movies_intervals)
 final_top_10_movies.to_csv('/Users/cw/Desktop/top_10_movies_every_5_years.csv', index=False)
 
 # Display the final top 10 movies DataFrame
+pd.options.display.float_format = '${:,.2f}M'.format  # Format float values in millions
+print("\nTop 10 Movies Every 5 Years:")
 print(final_top_10_movies)
-
 
 # Analyze the genres based on gross earnings
 # Split genres and explode into separate rows
@@ -112,10 +116,8 @@ genre_analysis = genre_analysis.sort_values(by='gross', ascending=False)
 genre_analysis.to_csv('/Users/cw/Desktop/genre_analysis_by_gross.csv', index=False)
 
 # Display the genre analysis DataFrame
+print("\nGenre Analysis by Gross Earnings:")
 print(genre_analysis)
-
-import matplotlib.pyplot as plt
-
 
 # Calculate total gross earnings for each 5-year interval
 gross_earnings_interval = final_top_10_movies.groupby('Interval')['gross'].sum().reset_index()
@@ -124,15 +126,15 @@ gross_earnings_interval = final_top_10_movies.groupby('Interval')['gross'].sum()
 plt.figure(figsize=(12, 6))
 plt.plot(gross_earnings_interval['Interval'], gross_earnings_interval['gross'], marker='o')
 plt.xlabel('Interval')
-plt.ylabel('Total Gross Earnings')
+plt.ylabel('Total Gross Earnings (in Millions)')
 plt.title('Total Gross Earnings for Top 10 Movies Every 5 Years')
 plt.xticks(rotation=45)
 plt.grid(True)
 plt.show()
-import seaborn as sns
 
 # Correlation matrix
 correlation_matrix = final_top_10_movies[['gross', 'rating', 'runtime']].corr()
+print("\nCorrelation Matrix:")
 print(correlation_matrix)
 
 # Heatmap of the correlation matrix
@@ -141,13 +143,12 @@ sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', linewidths=0.5)
 plt.title('Correlation Matrix')
 plt.show()
 
-
 # Box plot for gross earnings by 5-year intervals
 plt.figure(figsize=(12, 6))
 sns.boxplot(x='Interval', y='gross', data=final_top_10_movies)
 plt.xticks(rotation=45)
 plt.xlabel('Interval')
-plt.ylabel('Gross Earnings')
+plt.ylabel('Gross Earnings (in Millions)')
 plt.title('Box Plot of Gross Earnings by 5-Year Intervals')
 plt.show()
 
@@ -158,7 +159,7 @@ plt.xticks(rotation=45)
 plt.xlabel('Interval')
 plt.ylabel('Rating')
 plt.title('Box Plot of Ratings by 5-Year Intervals')
-plt.show()
+plt
 
 # Box plot for runtimes by 5-year intervals
 plt.figure(figsize=(12, 6))
@@ -236,3 +237,25 @@ print(average_gross_by_director.head(10))
 # Average gross earnings by star
 average_gross_by_star = final_top_10_movies.groupby('star')['gross'].mean().reset_index().sort_values(by='gross', ascending=False)
 print(average_gross_by_star.head(10))
+
+# Function to get top 10 movies based on gross earnings for a given interval
+def get_top_10_movies(df, start_year, end_year):
+    interval_df = df[(df['year'] >= start_year) & (df['year'] < end_year)]
+    top_10 = interval_df.sort_values(by='gross', ascending=False).head(10)
+    top_10['Interval'] = f"{start_year}-{end_year - 1}"
+    return top_10
+
+# List to store the top 10 movies for each 5-year interval
+top_10_movies_intervals = []
+
+# Calculate the top 10 movies for each 5-year interval from 1990
+for start_year in range(1990, 2025, 5):
+    end_year = start_year + 5
+    top_10 = get_top_10_movies(filtered_df, start_year, end_year)
+    top_10_movies_intervals.append(top_10)
+
+# Concatenate all top 10 movies into one DataFrame
+final_top_10_movies = pd.concat(top_10_movies_intervals)
+
+# Display the final top 10 movies DataFrame
+print(final_top_10_movies)
